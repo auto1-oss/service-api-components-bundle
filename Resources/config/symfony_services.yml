@@ -1,0 +1,72 @@
+parameters:
+    auto1.api.serializer.normalizer.datetime.format: 'Y-m-d\TH:i:sO'
+
+#symfony services redefined with custom configuration specific for bundle
+services:
+
+    auto1.api.encoder.url:
+        class: Auto1\ServiceAPIComponentsBundle\Service\Serializer\Encoder\UrlEncoder
+        tags: [serializer.encoder]
+
+    auto1.api.encoder.void:
+        class: Auto1\ServiceAPIComponentsBundle\Service\Serializer\Encoder\VoidEncoder
+        tags: [serializer.encoder]
+
+    auto1.api.encoder.json:
+        class: Auto1\ServiceAPIComponentsBundle\Service\Serializer\Encoder\JsonEncoder
+        tags: [serializer.encoder]
+
+    auto1.api.response.transformer.name_converter.camel_case_to_snake_case:
+        class: Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter
+        arguments:
+            - ~
+            - false
+
+    auto1.api.response.transformer.name_converter.decorator.skip_convert_on_normalize:
+        class: Auto1\ServiceAPIComponentsBundle\Service\NameConverter\SkipConvertOnNormalizeNameConverterDecorator
+        arguments:
+            - '@auto1.api.response.transformer.name_converter.camel_case_to_snake_case'
+
+    auto1.api.response.transformer.normalizer:
+        class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
+        arguments:
+            - '@serializer.mapping.class_metadata_factory'
+            - '@auto1.api.response.transformer.name_converter.decorator.skip_convert_on_normalize'
+            - '@serializer.property_accessor'
+            - '@property_info'
+
+    auto1.api.response.serializer:
+        class: Symfony\Component\Serializer\Serializer
+        arguments:
+            - ['@auto1.api.serializer.denormalizer.array_access', '@auto1.api.serializer.denormalizer.array', '@auto1.api.serializer.normalizer.datetime', '@auto1.api.response.transformer.normalizer']
+            - ['@serializer.encoder.json']
+
+    auto1.api.serializer.denormalizer.array_access:
+      class: Auto1\ServiceAPIComponentsBundle\Service\Serializer\Normalizer\ArrayAccessNormalizer
+
+    auto1.api.serializer.denormalizer.array:
+        class: Symfony\Component\Serializer\Normalizer\ArrayDenormalizer
+
+    auto1.api.serializer.normalizer.datetime:
+        class: Symfony\Component\Serializer\Normalizer\DateTimeNormalizer
+        arguments:
+            - '%auto1.api.serializer.normalizer.datetime.format%'
+
+    auto1.api.serializer.normalizer.get_set_method:
+        class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+        arguments:
+            - '@serializer.mapping.class_metadata_factory'
+
+    auto1.api.serializer.normalizer.object:
+        class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
+        arguments:
+            - '@serializer.mapping.class_metadata_factory'
+            - ~
+            - '@serializer.property_accessor'
+            - '@property_info'
+
+    auto1.api.request.serializer:
+        class: Symfony\Component\Serializer\Serializer
+        arguments:
+            - ['@auto1.api.serializer.normalizer.datetime', '@auto1.api.serializer.denormalizer.array', '@auto1.api.serializer.normalizer.object', '@auto1.api.serializer.normalizer.get_set_method']
+            - ['@auto1.api.encoder.json', '@auto1.api.encoder.url', '@auto1.api.encoder.void']

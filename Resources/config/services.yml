@@ -1,0 +1,25 @@
+services:
+    auto1.api.endpoint.registry:
+        class: Auto1\ServiceAPIComponentsBundle\Service\Endpoint\EndpointRegistry
+        arguments:
+            - '@auto1.api.url_resolver'
+
+    auto1.api.endpoint.factory:
+        class: Auto1\ServiceAPIComponentsBundle\Service\Endpoint\EndpointFactory
+
+    auto1.api.url_resolver:
+        class: Auto1\ServiceAPIComponentsBundle\Service\UrlResolver\ChainUrlResolver
+
+    auto1.api.url_resolver.parameter_aware:
+        class: Auto1\ServiceAPIComponentsBundle\Service\UrlResolver\ParameterAwareUrlResolver
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: 'auto1.api.url_resolver', priority: 0 }
+
+    auto1.api.command.endpoints_debug:
+        class: Auto1\ServiceAPIComponentsBundle\Command\EndpointsDebugCommand
+        arguments:
+            - '@auto1.api.endpoint.registry'
+        tags:
+            - 'console.command'
