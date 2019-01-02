@@ -13,11 +13,11 @@ You will need to add this to your composer.json:
     "repositories": [
         {
             "type": "git",
-            "url": "git@github.com:wkda/service-api-request.git"
+            "url": "git@github.com:auto1-oss/service-api-request.git"
         },
         {
             "type": "git",
-            "url": "git@github.com:wkda/service-api-components-bundle.git"
+            "url": "git@github.com:auto1-oss/service-api-components-bundle.git"
         }
     ]
 ```
@@ -156,9 +156,3 @@ To output all registered endpoints:
 ```bash
 bin/console auto1.debug.endpoints
 ```
-
-For more info - have a look at [admin-handover-protocol](https://github.com/wkda/admin-handover-protocol) usage:
-- AbstractRepository;
-- SearchFilters;
-- PatchRequestFactory;
-- Unicorns;
