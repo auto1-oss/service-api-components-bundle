@@ -1,0 +1,45 @@
+{
+    "name": "auto1-oss/service-api-components-bundle",
+    "license": "MIT",
+    "type": "Auto1-bundle",
+    "description": "Auto1 Common Components for Service API/Client/Handler Bundles",
+    "authors": [
+        {
+            "name": "Andrei Dantsiger",
+            "email": "andrei.dantsiger@auto1.com"
+        },
+        {
+            "name": "Yaroslav Sklabinskyi",
+            "email": "yaroslav.sklabinskyi@auto1.com"
+        }
+    ],
+    "require": {
+        "php": "~7.0.8",
+        "symfony/serializer" : "~3.0|~4.0",
+        "symfony/monolog-bridge": "~3.0|~4.0",
+        "symfony/dependency-injection": "~3.0|~4.0",
+        "symfony/config": "~3.0|~4.0",
+        "symfony/http-kernel": "~3.0|~4.0",
+        "symfony/property-info": "^3.4.2|~4.0",
+        "symfony/property-access": "~3.0|~4.0",
+        "symfony/yaml": "~3.0|~4.0",
+        "monolog/monolog": "~1.22",
+        "fig/http-message-util": "^1.1.2",
+        "auto1-oss/service-api-request": "dev-master"
+    },
+    "require-dev": {
+        "symfony/console": "~3.0|~4.0",
+        "phpunit/phpunit": "^4.8",
+        "symfony/phpunit-bridge": "^3.3.8",
+        "phpspec/prophecy": "^1.7.2"
+    },
+    "autoload": {
+        "psr-4": { "Auto1\\ServiceAPIComponentsBundle\\": "" }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:auto1-oss/service-api-request.git"
+        }
+    ]
+}
