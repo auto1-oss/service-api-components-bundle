@@ -7,21 +7,6 @@ framework:
     property_info: { enabled: true }
 ```
 
-### Composer
-You will need to add this to your composer.json:
-```json
-    "repositories": [
-        {
-            "type": "git",
-            "url": "git@github.com:auto1-oss/service-api-request.git"
-        },
-        {
-            "type": "git",
-            "url": "git@github.com:auto1-oss/service-api-components-bundle.git"
-        }
-    ]
-```
-
 ## Example EP Provider symfony.service declaration:
 ### tag
 ```yaml
