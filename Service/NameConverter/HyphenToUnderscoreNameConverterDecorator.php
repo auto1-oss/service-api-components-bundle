@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Auto1\ServiceAPIComponentsBundle\Service\NameConverter;
 
 use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
-use function \str_replace;
 
 class HyphenToUnderscoreNameConverterDecorator implements NameConverterInterface
 {
@@ -12,8 +11,7 @@ class HyphenToUnderscoreNameConverterDecorator implements NameConverterInterface
     private $nameConverter;
 
     /**
-     * SnakeCaseToCamelCaseOnDenormalizeDecoratorNameConverter constructor.
-     *
+     * HyphenToUnderscoreNameConverterDecorator constructor.
      * @param NameConverterInterface $nameConverter
      */
     public function __construct(NameConverterInterface $nameConverter)
@@ -34,6 +32,6 @@ class HyphenToUnderscoreNameConverterDecorator implements NameConverterInterface
      */
     public function denormalize($propertyName)
     {
-        return $this->nameConverter->denormalize(str_replace('-', '_', $propertyName));
+        return $this->nameConverter->denormalize(\str_replace('-', '_', $propertyName));
     }
 }

@@ -4,27 +4,29 @@ declare(strict_types=1);
 namespace Auto1\ServiceAPIComponentsBundle\Tests\Service\Serializer\NameConverter;
 
 use Auto1\ServiceAPIComponentsBundle\Service\NameConverter\HyphenToUnderscoreNameConverterDecorator;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
 
 class HyphenToUnderscoreNameConverterDecoratorTest extends TestCase
 {
-    /** @var NameConverterInterface|MockObject */
+    /** @var NameConverterInterface|ObjectProphecy */
     private $decoratedConverterMock;
 
+    /**
+     * {@inheritDoc}
+     */
     protected function setUp()
     {
-        $this->decoratedConverterMock = $this->createMock(NameConverterInterface::class);
+        $this->decoratedConverterMock = $this->prophesize(NameConverterInterface::class);
     }
 
-    public function testConstruct()
+    /**
+     * {@inheritDoc}
+     */
+    protected function tearDown()
     {
-        $this->decoratedConverterMock
-            ->expects($this->never())
-            ->method($this->anything());
-
-        new HyphenToUnderscoreNameConverterDecorator($this->decoratedConverterMock);
+        $this->decoratedConverterMock->checkProphecyMethodsPredictions();
     }
 
     /**
@@ -36,10 +38,9 @@ class HyphenToUnderscoreNameConverterDecoratorTest extends TestCase
     public function testDenormalize(string $propertyName, string $expectedResult)
     {
         $this->decoratedConverterMock
-            ->expects($this->once())
-            ->method('denormalize')
-            ->with($expectedResult)
-            ->willReturn($expectedResult);
+            ->denormalize($expectedResult)
+            ->willReturn($expectedResult)
+            ->shouldBeCalledOnce();
 
         $converter = $this->getCut();
 
@@ -56,10 +57,9 @@ class HyphenToUnderscoreNameConverterDecoratorTest extends TestCase
     public function testNormalize(string $propertyName)
     {
         $this->decoratedConverterMock
-            ->expects($this->once())
-            ->method('normalize')
-            ->with($propertyName)
-            ->willReturn($propertyName);
+            ->normalize($propertyName)
+            ->willReturn($propertyName)
+            ->shouldBeCalledOnce();
 
         $converter = $this->getCut();
 
@@ -96,6 +96,6 @@ class HyphenToUnderscoreNameConverterDecoratorTest extends TestCase
 
     private function getCut(): HyphenToUnderscoreNameConverterDecorator
     {
-        return new HyphenToUnderscoreNameConverterDecorator($this->decoratedConverterMock);
+        return new HyphenToUnderscoreNameConverterDecorator($this->decoratedConverterMock->reveal());
     }
 }
