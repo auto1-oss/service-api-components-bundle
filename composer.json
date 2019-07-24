@@ -29,7 +29,7 @@
     },
     "require-dev": {
         "symfony/console": "~3.0|~4.0",
-        "phpunit/phpunit": "^4.8",
+        "phpunit/phpunit": "^6.5",
         "symfony/phpunit-bridge": "^3.3.8",
         "phpspec/prophecy": "^1.7.2"
     },

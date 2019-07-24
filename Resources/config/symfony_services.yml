@@ -22,10 +22,15 @@ services:
             - ~
             - false
 
+    auto1.api.response.transformer.name_converter.decorator.hyphen_to_underscore_converter:
+        class: Auto1\ServiceAPIComponentsBundle\Service\NameConverter\HyphenToUnderscoreNameConverterDecorator
+        arguments:
+            - '@auto1.api.response.transformer.name_converter.camel_case_to_snake_case'
+
     auto1.api.response.transformer.name_converter.decorator.skip_convert_on_normalize:
         class: Auto1\ServiceAPIComponentsBundle\Service\NameConverter\SkipConvertOnNormalizeNameConverterDecorator
         arguments:
-            - '@auto1.api.response.transformer.name_converter.camel_case_to_snake_case'
+            - '@auto1.api.response.transformer.name_converter.decorator.hyphen_to_underscore_converter'
 
     auto1.api.response.transformer.normalizer:
         class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
