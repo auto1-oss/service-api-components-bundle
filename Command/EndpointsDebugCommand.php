@@ -38,7 +38,7 @@ class EndpointsDebugCommand extends Command
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int|null|void
+     * @return int
      * @throws \ReflectionException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -53,6 +53,8 @@ class EndpointsDebugCommand extends Command
         foreach ($endpoints as $endpoint) {
             $this->dumpEndpoint($output, $endpoint);
         }
+
+        return 0;
     }
 
     /**
