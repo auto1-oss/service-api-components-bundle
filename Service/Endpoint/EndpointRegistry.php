@@ -69,7 +69,8 @@ class EndpointRegistry implements EndpointRegistryInterface
             $endpoint->getRequestClass(),
             $endpoint->getResponseFormat(),
             $endpoint->getResponseClass(),
-            $endpoint->getDateTimeFormat()
+            $endpoint->getDateTimeFormat(),
+            $endpoint->getErrorClass()
         );
     }
 
