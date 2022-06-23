@@ -76,7 +76,6 @@ class EndpointImmutable implements EndpointInterface
         $dateTimeFormat = null,
         string $errorClass = null
     ) {
-        codecept_debug($errorClass);
         $this->method = $method;
         $this->baseUrl = $baseUrl;
         $this->path = $path;
@@ -85,10 +84,7 @@ class EndpointImmutable implements EndpointInterface
         $this->responseFormat = $responseFormat;
         $this->responseClass = $responseClass;
         $this->dateTimeFormat = $dateTimeFormat;
-        codecept_debug('ARGH');
-        codecept_debug($errorClass);
         $this->errorClass = $errorClass;
-        codecept_debug($this->errorClass);
     }
 
     /**

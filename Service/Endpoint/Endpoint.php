@@ -153,8 +153,6 @@ class Endpoint implements EndpointInterface
      */
     public function setErrorClass(string $errorClass): self
     {
-        codecept_debug('$errorClass321321');
-        codecept_debug($errorClass);
         $this->errorClass = $errorClass;
 
         return $this;
