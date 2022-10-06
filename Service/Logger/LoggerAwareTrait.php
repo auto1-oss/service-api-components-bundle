@@ -11,6 +11,11 @@ use Psr\Log\NullLogger;
 trait LoggerAwareTrait
 {
     /**
+     * @var LoggerInterface
+     */
+    private $traitLogger;
+
+    /**
      * @return LoggerInterface
      */
     protected function getLogger() : LoggerInterface
