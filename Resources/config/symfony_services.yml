@@ -61,7 +61,7 @@ services:
         class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
         arguments:
             - '@serializer.mapping.class_metadata_factory'
-            - ~
+            - '@serializer.name_converter.metadata_aware'
             - '@serializer.property_accessor'
             - '@property_info'
 
