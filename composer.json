@@ -1,7 +1,7 @@
 {
     "name": "auto1-oss/service-api-components-bundle",
     "license": "MIT",
-    "type": "Auto1-bundle",
+    "type": "auto1-bundle",
     "description": "Auto1 Common Components for Service API/Client/Handler Bundles",
     "authors": [
         {
@@ -14,15 +14,15 @@
         }
     ],
     "require": {
-        "php": ">=7.0.8",
-        "symfony/serializer" : "~3.0|~4.0|~5.0",
-        "symfony/monolog-bridge": "~3.0|~4.0|~5.0",
-        "symfony/dependency-injection": "~3.0|~4.0|~5.0",
-        "symfony/config": "~3.0|~4.0|~5.0",
-        "symfony/http-kernel": "~3.0|~4.0|~5.0",
-        "symfony/property-info": "^3.4.2|~4.0|~5.0",
-        "symfony/property-access": "~3.0|~4.0|~5.0",
-        "symfony/yaml": "~3.0|~4.0|~5.0",
+        "php": ">=7.1.3",
+        "symfony/serializer" : "~4.2|~5.0",
+        "symfony/monolog-bridge": "~4.0|~5.0",
+        "symfony/dependency-injection": "~4.0|~5.0",
+        "symfony/config": "~4.0|~5.0",
+        "symfony/http-kernel": "~4.0|~5.0",
+        "symfony/property-info": "~4.0|~5.0",
+        "symfony/property-access": "~4.0|~5.0",
+        "symfony/yaml": "~4.0|~5.0",
         "monolog/monolog": "~1.22",
         "fig/http-message-util": "^1.1.2",
         "auto1-oss/service-api-request": "^1.0"
