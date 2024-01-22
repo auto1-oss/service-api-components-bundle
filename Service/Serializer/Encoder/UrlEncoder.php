@@ -21,7 +21,7 @@ class UrlEncoder implements EncoderInterface
     /**
      * {@inheritdoc}
      */
-    public function encode($data, $format, array $context = array())
+    public function encode($data, $format, array $context = array()): string
     {
         return $this->encodingImpl->encode($data, self::FORMAT, $context);
     }
@@ -29,7 +29,7 @@ class UrlEncoder implements EncoderInterface
     /**
      * {@inheritdoc}
      */
-    public function supportsEncoding($format)
+    public function supportsEncoding($format): bool
     {
         return self::FORMAT === $format;
     }

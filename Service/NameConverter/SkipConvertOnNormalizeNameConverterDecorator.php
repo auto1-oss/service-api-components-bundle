@@ -29,7 +29,7 @@ class SkipConvertOnNormalizeNameConverterDecorator implements NameConverterInter
     /**
      * {@inheritdoc}
      */
-    public function normalize($propertyName)
+    public function normalize($propertyName): string
     {
         return $propertyName;
     }
@@ -37,7 +37,7 @@ class SkipConvertOnNormalizeNameConverterDecorator implements NameConverterInter
     /**
      * {@inheritdoc}
      */
-    public function denormalize($propertyName)
+    public function denormalize($propertyName): string
     {
         return $this->nameConverter->denormalize($propertyName);
     }
