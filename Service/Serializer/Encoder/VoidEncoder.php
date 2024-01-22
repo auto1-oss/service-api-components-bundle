@@ -14,7 +14,7 @@ class VoidEncoder implements EncoderInterface
     /**
      * {@inheritdoc}
      */
-    public function encode($data, $format, array $context = array())
+    public function encode($data, $format, array $context = array()): string
     {
         return '';
     }
@@ -22,7 +22,7 @@ class VoidEncoder implements EncoderInterface
     /**
      * {@inheritdoc}
      */
-    public function supportsEncoding($format)
+    public function supportsEncoding($format): bool
     {
         return self::FORMAT === $format;
     }
