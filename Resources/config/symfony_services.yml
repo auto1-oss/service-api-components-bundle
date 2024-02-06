@@ -50,7 +50,8 @@ services:
     auto1.api.serializer.normalizer.datetime:
         class: Symfony\Component\Serializer\Normalizer\DateTimeNormalizer
         arguments:
-            - '%auto1.api.serializer.normalizer.datetime.format%'
+            $defaultContext:
+                datetime_format: '%auto1.api.serializer.normalizer.datetime.format%'
 
     auto1.api.serializer.normalizer.get_set_method:
         class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
