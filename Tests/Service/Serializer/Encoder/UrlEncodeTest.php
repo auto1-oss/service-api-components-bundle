@@ -5,20 +5,23 @@ namespace Auto1\ServiceAPIComponentsBundle\Tests\Service\Serializer\Encoder;
 use PHPUnit\Framework\TestCase;
 use Auto1\ServiceAPIComponentsBundle\Service\Serializer\Encoder\UrlEncode;
 use Auto1\ServiceAPIComponentsBundle\Service\Serializer\Encoder\UrlEncoder;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class UrlEncodeTest extends TestCase
 {
+    use ProphecyTrait;
+
     /**
      * @var UrlEncode
      */
     private $encode;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->encode = new UrlEncode();
     }
 
-    public function testSupportsEncoding()
+    public function testSupportsEncoding(): void
     {
         $this->assertTrue($this->encode->supportsEncoding(UrlEncoder::FORMAT));
         $this->assertFalse($this->encode->supportsEncoding('foobar'));
@@ -30,7 +33,7 @@ class UrlEncodeTest extends TestCase
      * @param array  $toEncode
      * @param string $expected
      */
-    public function testEncode(array $toEncode, string $expected)
+    public function testEncode(array $toEncode, string $expected): void
     {
         $this->assertEquals(
             $expected,
@@ -41,7 +44,7 @@ class UrlEncodeTest extends TestCase
     /**
      * @return array
      */
-    public function encodeProvider()
+    public static function encodeProvider(): array
     {
         return [
             'empty' => [
