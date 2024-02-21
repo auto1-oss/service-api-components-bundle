@@ -3,15 +3,12 @@
 namespace Auto1\ServiceAPIComponentsBundle\Tests\Service\Serializer\Encoder;
 
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\CustomNormalizer;
 use Auto1\ServiceAPIComponentsBundle\Service\Serializer\Encoder\UrlEncoder;
 
 class UrlEncoderTest extends TestCase
 {
-    use ProphecyTrait;
-
     /**
      * @var UrlEncoder
      */

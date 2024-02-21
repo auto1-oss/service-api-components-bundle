@@ -5,12 +5,9 @@ namespace Auto1\ServiceAPIComponentsBundle\Tests\Service\Serializer\Encoder;
 use PHPUnit\Framework\TestCase;
 use Auto1\ServiceAPIComponentsBundle\Service\Serializer\Encoder\UrlEncode;
 use Auto1\ServiceAPIComponentsBundle\Service\Serializer\Encoder\UrlEncoder;
-use Prophecy\PhpUnit\ProphecyTrait;
 
 class UrlEncodeTest extends TestCase
 {
-    use ProphecyTrait;
-
     /**
      * @var UrlEncode
      */
