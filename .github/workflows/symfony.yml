@@ -31,7 +31,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Composer update on php ${{ matrix.php }} and symfony
-        run: composer update --prefer-dist --no-progress
+        run: pwd && composer update --prefer-dist --no-progress
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/bin/phpunit
 
