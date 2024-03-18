@@ -56,6 +56,7 @@ class EndpointProviderConfiguration implements EndpointProviderInterface
             $baseUrl = $endpointConfiguration['baseUrl'] ?? null;
             $path = $endpointConfiguration['path'];
             $requestClass = $endpointConfiguration['requestClass'];
+            $errorClass = $endpointConfiguration['errorClass'] ?? null;
             $responseClass = $endpointConfiguration['responseClass'] ?? null;
             $requestFormat = $endpointConfiguration['requestFormat']
                 ?? (\in_array($method, self::METHODS_WITHOUT_BODY)
@@ -73,7 +74,8 @@ class EndpointProviderConfiguration implements EndpointProviderInterface
                 $requestClass,
                 $responseFormat,
                 $responseClass,
-                $dateTimeFormat
+                $dateTimeFormat,
+                $errorClass
             );
 
             $endpointCollection[] = $endpoint;

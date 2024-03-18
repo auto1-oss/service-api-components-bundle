@@ -33,6 +33,11 @@ class Endpoint implements EndpointInterface
     private $responseClass;
 
     /**
+     * @var string|null
+     */
+    private $errorClass;
+
+    /**
      * @var string
      */
     private $requestFormat;
@@ -133,6 +138,24 @@ class Endpoint implements EndpointInterface
     public function getResponseClass()
     {
         return $this->responseClass;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getErrorClass()
+    {
+        return $this->errorClass;
+    }
+
+    /**
+     * @param string|null $errorClass
+     */
+    public function setErrorClass(string $errorClass): self
+    {
+        $this->errorClass = $errorClass;
+
+        return $this;
     }
 
     /**

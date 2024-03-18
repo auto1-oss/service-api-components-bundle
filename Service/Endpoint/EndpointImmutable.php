@@ -30,6 +30,11 @@ class EndpointImmutable implements EndpointInterface
     /**
      * @var string|null
      */
+    private $errorClass;
+
+    /**
+     * @var string|null
+     */
     private $responseClass;
 
     /**
@@ -58,6 +63,7 @@ class EndpointImmutable implements EndpointInterface
      * @param string $responseFormat
      * @param null|string $responseClass
      * @param null|string $dateTimeFormat
+     * @param null|string $errorClass
      */
     public function __construct(
         string $method,
@@ -67,7 +73,8 @@ class EndpointImmutable implements EndpointInterface
         string $requestClass,
         string $responseFormat,
         $responseClass = null,
-        $dateTimeFormat = null
+        $dateTimeFormat = null,
+        string $errorClass = null
     ) {
         $this->method = $method;
         $this->baseUrl = $baseUrl;
@@ -77,6 +84,7 @@ class EndpointImmutable implements EndpointInterface
         $this->responseFormat = $responseFormat;
         $this->responseClass = $responseClass;
         $this->dateTimeFormat = $dateTimeFormat;
+        $this->errorClass = $errorClass;
     }
 
     /**
@@ -117,6 +125,22 @@ class EndpointImmutable implements EndpointInterface
     public function getResponseClass()
     {
         return $this->responseClass;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getErrorClass()
+    {
+        return $this->errorClass;
+    }
+
+    /**
+     * @param string $errorClass
+     */
+    public function setErrorClass(?string $errorClass): void
+    {
+        $this->errorClass = $errorClass;
     }
 
     /**
