@@ -29,7 +29,7 @@ jobs:
         uses: auto1-oss/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          tools: composer:2.2
+          tools: composer:2.2.23
           extensions: mbstring, intl
           ini-values: post_max_size=256M, max_execution_time=180
           coverage: xdebug
