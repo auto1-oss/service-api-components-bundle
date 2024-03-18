@@ -13,6 +13,7 @@ interface EndpointFactoryInterface
         EndpointInterface::METHOD_PATCH,
         EndpointInterface::METHOD_PUT,
         EndpointInterface::METHOD_DELETE,
+        EndpointInterface::METHOD_HEAD,
     ];
 
     /**
