@@ -19,15 +19,17 @@ jobs:
   symfony-tests:
     runs-on: ${{ matrix.operating-system }}
     strategy:
+      fail-fast: false
       matrix:
         operating-system: [ 'ubuntu-latest' ]
         php-versions: [ '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3' ]
         phpunit-versions: [ 'latest' ]
     steps:
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: auto1-oss/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
+          tools: composer:2.2.23
           extensions: mbstring, intl
           ini-values: post_max_size=256M, max_execution_time=180
           coverage: xdebug
