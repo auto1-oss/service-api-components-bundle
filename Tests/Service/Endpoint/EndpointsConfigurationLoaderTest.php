@@ -10,7 +10,7 @@ use Auto1\ServiceAPIComponentsBundle\Service\Endpoint\EndpointsConfigurationLoad
  */
 class EndpointsConfigurationLoaderTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $endpointsConfigurationLoader = new EndpointsConfigurationLoader('configFilePathString');
         self::assertInstanceOf(EndpointsConfigurationLoader::class, $endpointsConfigurationLoader);

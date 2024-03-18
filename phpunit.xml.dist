@@ -7,26 +7,26 @@
          colors="true"
          bootstrap="vendor/autoload.php"
 >
-    <php>
-        <ini name="error_reporting" value="-1" />
-        <server name="KERNEL_CLASS" value="AppKernel" />
-    </php>
+  <php>
+    <ini name="error_reporting" value="-1" />
+    <server name="KERNEL_CLASS" value="AppKernel" />
+  </php>
 
-    <testsuites>
-        <testsuite name="Auto1 ServiceApiComponentsBundle Test Suite">
-            <directory>./Tests</directory>
-        </testsuite>
-    </testsuites>
+  <testsuites>
+    <testsuite name="Auto1 ServiceApiComponentsBundle Test Suite">
+      <directory>./Tests</directory>
+    </testsuite>
+  </testsuites>
 
-    <filter>
-        <whitelist>
-            <directory>.</directory>
-            <exclude>
-                <directory>./_code_coverage</directory>
-                <directory>./Resources</directory>
-                <directory>./Tests</directory>
-                <directory>./vendor</directory>
-            </exclude>
-        </whitelist>
-    </filter>
+  <filter>
+    <whitelist>
+      <directory>.</directory>
+      <exclude>
+        <directory>./_code_coverage</directory>
+        <directory>./Resources</directory>
+        <directory>./Tests</directory>
+        <directory>./vendor</directory>
+      </exclude>
+    </whitelist>
+  </filter>
 </phpunit>

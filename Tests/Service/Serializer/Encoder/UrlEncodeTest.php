@@ -13,12 +13,12 @@ class UrlEncodeTest extends TestCase
      */
     private $encode;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->encode = new UrlEncode();
     }
 
-    public function testSupportsEncoding()
+    public function testSupportsEncoding(): void
     {
         $this->assertTrue($this->encode->supportsEncoding(UrlEncoder::FORMAT));
         $this->assertFalse($this->encode->supportsEncoding('foobar'));
@@ -30,7 +30,7 @@ class UrlEncodeTest extends TestCase
      * @param array  $toEncode
      * @param string $expected
      */
-    public function testEncode(array $toEncode, string $expected)
+    public function testEncode(array $toEncode, string $expected): void
     {
         $this->assertEquals(
             $expected,
@@ -41,7 +41,7 @@ class UrlEncodeTest extends TestCase
     /**
      * @return array
      */
-    public function encodeProvider()
+    public static function encodeProvider(): array
     {
         return [
             'empty' => [

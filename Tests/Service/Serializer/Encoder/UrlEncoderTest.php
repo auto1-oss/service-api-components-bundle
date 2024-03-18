@@ -22,13 +22,13 @@ class UrlEncoderTest extends TestCase
     /**
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->encoder = new UrlEncoder();
         $this->serializer = new Serializer(array(new CustomNormalizer()), array('url' => new UrlEncoder()));
     }
 
-    public function testEncodeSimple()
+    public function testEncodeSimple(): void
     {
         $obj = new \stdClass();
         $obj->foo = 'foo';
@@ -38,7 +38,7 @@ class UrlEncoderTest extends TestCase
         self::assertEquals($expected, $this->encoder->encode($obj, 'url'));
     }
 
-    public function testEncodeCamelToSnakeCaseNames()
+    public function testEncodeCamelToSnakeCaseNames(): void
     {
         $obj = $this->getObject();
 
@@ -50,7 +50,7 @@ class UrlEncoderTest extends TestCase
     /**
      * @return string
      */
-    protected function getUrlSource()
+    protected function getUrlSource(): string
     {
         return 'foo=foo&foo_bar=fooBar';
     }
@@ -58,7 +58,7 @@ class UrlEncoderTest extends TestCase
     /**
      * @return \stdClass
      */
-    protected function getObject()
+    protected function getObject(): \stdClass
     {
         $obj = new \stdClass();
         $obj->foo = 'foo';
