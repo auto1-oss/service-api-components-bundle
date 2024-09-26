@@ -70,6 +70,7 @@ class EndpointsDebugCommand extends Command
         $this->writeConfigLine($output, 'path', $endpoint->getPath());
         $this->writeConfigLine($output, 'requestFormat', $endpoint->getRequestFormat());
         $this->writeConfigLine($output, 'responseClass', $endpoint->getResponseClass());
+        $this->writeConfigLine($output, 'errorClass', $endpoint->getErrorClass());
         $this->writeConfigLine($output, 'responseFormat', $endpoint->getResponseFormat());
         $this->writeConfigLine($output, 'dateTimeFormat', $endpoint->getDateTimeFormat());
 
