@@ -20,7 +20,7 @@ class UrlEncoder implements EncoderInterface
      */
     protected $encodingImpl;
 
-    public function __construct(UrlEncode $encodingImpl = null)
+    public function __construct(?UrlEncode $encodingImpl = null)
     {
         $this->encodingImpl = $encodingImpl ?: new UrlEncode();
     }
