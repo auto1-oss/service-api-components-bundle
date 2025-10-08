@@ -18,7 +18,6 @@ class EndpointProviderConfiguration implements EndpointProviderInterface
 {
     const METHODS_WITHOUT_BODY = [
         EndpointInterface::METHOD_GET,
-        EndpointInterface::METHOD_DELETE,
     ];
 
     const DEFAULT_FORMAT = EndpointInterface::FORMAT_JSON;
