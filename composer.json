@@ -23,7 +23,7 @@
         "symfony/property-info": "~4.0|~5.0|~6.0|~7.0",
         "symfony/property-access": "~4.0|~5.0|~6.0|~7.0",
         "symfony/yaml": "~4.0|~5.0|~6.0|~7.0",
-        "monolog/monolog": "~1.22",
+        "monolog/monolog": "~1.22|^2.9|^3.0",
         "fig/http-message-util": "^1.1.2",
         "auto1-oss/service-api-request": "^1.0"
     },
