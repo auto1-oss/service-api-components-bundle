@@ -14,6 +14,7 @@ services:
 
     auto1.api.encoder.json:
         class: Auto1\ServiceAPIComponentsBundle\Service\Serializer\Encoder\JsonEncoder
+        parent: serializer.encoder.json
         tags: [serializer.encoder]
 
     auto1.api.response.transformer.name_converter.camel_case_to_snake_case:

@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class ArrayAccessNormalizer implements DenormalizerInterface
 {
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = array()): object
     {
         $object = new $class;
 
@@ -24,7 +24,7 @@ class ArrayAccessNormalizer implements DenormalizerInterface
         return $object;
     }
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         if (!class_exists($type)) {
             return false;
@@ -37,5 +37,10 @@ class ArrayAccessNormalizer implements DenormalizerInterface
         }
 
         return false;
+    }
+    
+    public function getSupportedTypes(?string $format): array
+    {
+        return [\ArrayAccess::class => false];
     }
 }
