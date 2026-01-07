@@ -32,10 +32,12 @@ class EndpointFactory implements EndpointFactoryInterface
         string $requestClass,
         string $responseFormat,
         $responseClass = null,
-        $dateTimeFormat = null
+        $dateTimeFormat = null,
+        string $errorClass = null
     ): EndpointInterface
     {
         $endpoint = new Endpoint();
+        $this->setEndpointErrorClass($endpoint, $errorClass);
         $this->setEndpointMethod($endpoint, $method);
         $this->setEndpointBaseUrl($endpoint, $baseUrl);
         $this->setEndpointPath($endpoint, $path);
@@ -149,6 +151,35 @@ class EndpointFactory implements EndpointFactoryInterface
         }
 
         return $endpoint->setResponseClass($responseClass);
+    }
+
+    /**
+     * @param Endpoint    $endpoint
+     * @param string|null $errorClass
+     *
+     * @return EndpointInterface
+     *
+     * @throws ConfigurationException
+     */
+    private function setEndpointErrorClass(Endpoint $endpoint, $errorClass = null): EndpointInterface
+    {
+        if (null === $errorClass) {
+            return $endpoint;
+        }
+
+        $className = $errorClass;
+        if (preg_match('/.*\[\]$/', $className)) {
+            $className = substr($className, 0, -2);
+        }
+        if (!class_exists($className)) {
+            $errorMessage = 'Invalid Endpoint errorClass';
+            $this->getLogger()->error($errorMessage, [
+                'responseClass' => $errorClass,
+            ]);
+            throw new ConfigurationException($errorMessage);
+        }
+
+        return $endpoint->setErrorClass($errorClass);
     }
 
     /**

@@ -43,6 +43,11 @@ interface EndpointInterface extends RequestMethodInterface
     public function getResponseClass();
 
     /**
+     * @return string|null
+     */
+    public function getErrorClass();
+
+    /**
      * @return string
      */
     public function getRequestClass(): string;

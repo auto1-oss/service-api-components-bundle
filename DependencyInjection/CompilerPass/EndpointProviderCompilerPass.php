@@ -111,6 +111,7 @@ class EndpointProviderCompilerPass implements CompilerPassInterface
             $endpoint->getResponseFormat(),
             $endpoint->getResponseClass(),
             $endpoint->getDateTimeFormat(),
+            $endpoint->getErrorClass(),
         ]);
     }
 }

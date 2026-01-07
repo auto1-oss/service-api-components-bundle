@@ -32,6 +32,7 @@ interface EndpointFactoryInterface
      * @param string $responseFormat
      * @param string|null $responseClass
      * @param string|null $dateTimeFormat
+     * @param string|null $errorClass
      *
      * @return EndpointInterface
      */
@@ -43,6 +44,7 @@ interface EndpointFactoryInterface
         string $requestClass,
         string $responseFormat,
         $responseClass = null,
-        $dateTimeFormat = null
+        $dateTimeFormat = null,
+        string $errorClass = null
     ) : EndpointInterface;
 }
