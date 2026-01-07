@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class ArrayAccessNormalizer implements DenormalizerInterface
 {
-    public function denormalize($data, $class, $format = null, array $context = array()): mixed
+    public function denormalize($data, $class, $format = null, array $context = array()): object
     {
         $object = new $class;
 
