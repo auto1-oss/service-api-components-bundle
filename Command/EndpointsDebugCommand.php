@@ -48,7 +48,7 @@ class EndpointsDebugCommand extends Command
      * @return int
      * @throws \ReflectionException
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $reflectionClass = new \ReflectionClass(EndpointRegistry::class);
         $storageProperty = $reflectionClass->getProperty('endpointStorage');
