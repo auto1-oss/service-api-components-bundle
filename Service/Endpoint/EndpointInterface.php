@@ -1,4 +1,5 @@
 <?php
+
 /*
 * This file is part of the auto1-oss/service-api-components-bundle.
 *
@@ -7,6 +8,8 @@
 * For the full copyright and license information, please view the LICENSE
 * file that was distributed with this source code.
 */
+declare(strict_types=1);
+
 namespace Auto1\ServiceAPIComponentsBundle\Service\Endpoint;
 
 use Fig\Http\Message\RequestMethodInterface;
@@ -18,7 +21,13 @@ use Fig\Http\Message\RequestMethodInterface;
  */
 interface EndpointInterface extends RequestMethodInterface
 {
-    const FORMAT_JSON = 'json';
+    public const FORMAT_JSON = 'json';
+
+    public const FORMAT_MULTIPART = 'multipart';
+
+    public const FORMAT_URL = 'url';
+
+    public const FORMAT_VOID = 'void';
 
     /**
      * One of METHOD_* constants

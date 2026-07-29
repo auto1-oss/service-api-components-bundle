@@ -1,4 +1,5 @@
 <?php
+
 /*
 * This file is part of the auto1-oss/service-api-components-bundle.
 *
@@ -7,6 +8,8 @@
 * For the full copyright and license information, please view the LICENSE
 * file that was distributed with this source code.
 */
+declare(strict_types=1);
+
 namespace Auto1\ServiceAPIComponentsBundle\Service\Endpoint;
 
 use Auto1\ServiceAPIRequest\ServiceRequestInterface;
@@ -18,6 +21,8 @@ interface EndpointRegistryInterface
 {
     /**
      * @param EndpointInterface $endpoint
+     *
+     * @return void
      */
     public function registerEndpoint(EndpointInterface $endpoint);
 
@@ -26,5 +31,5 @@ interface EndpointRegistryInterface
      *
      * @return EndpointInterface
      */
-    public function getEndpoint(ServiceRequestInterface $serviceRequest) : EndpointInterface;
+    public function getEndpoint(ServiceRequestInterface $serviceRequest): EndpointInterface;
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
 * This file is part of the auto1-oss/service-api-components-bundle.
 *
@@ -7,6 +8,8 @@
 * For the full copyright and license information, please view the LICENSE
 * file that was distributed with this source code.
 */
+declare(strict_types=1);
+
 namespace Auto1\ServiceAPIComponentsBundle\Tests\Service\Serializer\Encoder;
 
 use PHPUnit\Framework\TestCase;
@@ -32,7 +35,7 @@ class UrlEncoderTest extends TestCase
     protected function setUp(): void
     {
         $this->encoder = new UrlEncoder();
-        $this->serializer = new Serializer(array(new CustomNormalizer()), array('url' => new UrlEncoder()));
+        $this->serializer = new Serializer([new CustomNormalizer()], ['url' => new UrlEncoder()]);
     }
 
     public function testEncodeSimple(): void

@@ -1,4 +1,5 @@
 <?php
+
 /*
 * This file is part of the auto1-oss/service-api-components-bundle.
 *
@@ -7,6 +8,8 @@
 * For the full copyright and license information, please view the LICENSE
 * file that was distributed with this source code.
 */
+declare(strict_types=1);
+
 namespace Auto1\ServiceAPIComponentsBundle\Service\Endpoint;
 
 use Auto1\ServiceAPIComponentsBundle\Exception\Core\ConfigurationException;
@@ -16,12 +19,12 @@ use Auto1\ServiceAPIComponentsBundle\Exception\Core\ConfigurationException;
  */
 class EndpointProviderConfiguration implements EndpointProviderInterface
 {
-    const METHODS_WITHOUT_BODY = [
+    public const METHODS_WITHOUT_BODY = [
         EndpointInterface::METHOD_GET,
     ];
 
-    const DEFAULT_FORMAT = EndpointInterface::FORMAT_JSON;
-    const VOID_FORMAT = 'void';
+    public const DEFAULT_FORMAT = EndpointInterface::FORMAT_JSON;
+    public const VOID_FORMAT = EndpointInterface::FORMAT_VOID;
 
     /**
      * @var EndpointFactoryInterface
@@ -89,11 +92,11 @@ class EndpointProviderConfiguration implements EndpointProviderInterface
     }
 
     /**
-     * @param array $endpointConfiguration
+     * @param array<string, mixed> $endpointConfiguration
      *
      * @throws ConfigurationException
      */
-    private function checkEndpointConfiguration(array $endpointConfiguration)
+    private function checkEndpointConfiguration(array $endpointConfiguration): void
     {
         if (!array_key_exists('requestClass', $endpointConfiguration)) {
             $errorMessage = 'Endpoint requestClass not set';

@@ -1,4 +1,5 @@
 <?php
+
 /*
 * This file is part of the auto1-oss/service-api-components-bundle.
 *
@@ -7,6 +8,8 @@
 * For the full copyright and license information, please view the LICENSE
 * file that was distributed with this source code.
 */
+declare(strict_types=1);
+
 namespace Auto1\ServiceAPIComponentsBundle\Service\UrlResolver;
 
 use Auto1\ServiceAPIComponentsBundle\Service\Logger\LoggerAwareTrait;
@@ -40,15 +43,6 @@ class ParameterAwareUrlResolver implements UrlResolverInterface
     public function resolve(string $baseUrl): string
     {
         if (preg_match('/^%(.*)%$/', $baseUrl, $matches)) {
-            if (!isset($matches[1])) {
-                $errorMessage = 'Endpoint BaseUrl configuration not found';
-                $this->getLogger()->error($errorMessage, [
-                    'baseUrl' => $baseUrl,
-                ]);
-
-                return $baseUrl;
-            }
-
             if (!$this->container->hasParameter($matches[1])) {
                 $errorMessage = 'Parameter not found for Endpoint BaseUrl configuration';
                 $this->getLogger()->error($errorMessage, [

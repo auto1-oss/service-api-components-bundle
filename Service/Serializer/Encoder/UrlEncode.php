@@ -1,4 +1,5 @@
 <?php
+
 /*
 * This file is part of the auto1-oss/service-api-components-bundle.
 *
@@ -7,6 +8,8 @@
 * For the full copyright and license information, please view the LICENSE
 * file that was distributed with this source code.
 */
+declare(strict_types=1);
+
 namespace Auto1\ServiceAPIComponentsBundle\Service\Serializer\Encoder;
 
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
@@ -15,6 +18,8 @@ class UrlEncode implements EncoderInterface
 {
     /**
      * Encodes PHP data to a JSON string.
+     *
+     * @param array<string, mixed> $context
      *
      * {@inheritdoc}
      */
@@ -37,9 +42,9 @@ class UrlEncode implements EncoderInterface
     /**
      * Convert camelCase type array's keys to under_score+lowercase type array's keys.
      *
-     * @param array $array array to convert
+     * @param array<mixed> $array array to convert
      *
-     * @return array under_score array
+     * @return array<mixed> under_score array
      */
     private function convertCamelCaseToSnakeCase($array)
     {

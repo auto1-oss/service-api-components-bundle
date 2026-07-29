@@ -1,4 +1,5 @@
 <?php
+
 /*
 * This file is part of the auto1-oss/service-api-components-bundle.
 *
@@ -7,6 +8,8 @@
 * For the full copyright and license information, please view the LICENSE
 * file that was distributed with this source code.
 */
+declare(strict_types=1);
+
 namespace Auto1\ServiceAPIComponentsBundle\Service\Endpoint;
 
 use Auto1\ServiceAPIComponentsBundle\Exception\Core\ConfigurationException;
@@ -33,8 +36,7 @@ class EndpointFactory implements EndpointFactoryInterface
         string $responseFormat,
         $responseClass = null,
         $dateTimeFormat = null
-    ): EndpointInterface
-    {
+    ): EndpointInterface {
         $endpoint = new Endpoint();
         $this->setEndpointMethod($endpoint, $method);
         $this->setEndpointBaseUrl($endpoint, $baseUrl);
@@ -71,13 +73,13 @@ class EndpointFactory implements EndpointFactoryInterface
 
     /**
      * @param Endpoint $endpoint
-     * @param string   $baseUrl
+     * @param string|null $baseUrl
      *
      * @return EndpointInterface
      *
      * @throws ConfigurationException
      */
-    private function setEndpointBaseUrl(Endpoint $endpoint, string $baseUrl = null): EndpointInterface
+    private function setEndpointBaseUrl(Endpoint $endpoint, ?string $baseUrl = null): EndpointInterface
     {
         if (null === $baseUrl) {
             return $endpoint;

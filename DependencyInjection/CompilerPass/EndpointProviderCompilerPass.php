@@ -1,4 +1,5 @@
 <?php
+
 /*
 * This file is part of the auto1-oss/service-api-components-bundle.
 *
@@ -7,6 +8,8 @@
 * For the full copyright and license information, please view the LICENSE
 * file that was distributed with this source code.
 */
+declare(strict_types=1);
+
 namespace Auto1\ServiceAPIComponentsBundle\DependencyInjection\CompilerPass;
 
 use Auto1\ServiceAPIComponentsBundle\Exception\Core\ConfigurationException;
@@ -22,15 +25,12 @@ use Symfony\Component\DependencyInjection\Definition;
  */
 class EndpointProviderCompilerPass implements CompilerPassInterface
 {
-    const VISITOR_TAG_NAME = 'auto1.api.endpoint_provider';
-    const VISITOR_TAG_KEY_PRIORITY = 'priority';
-    const METHOD_REGISTER_ENDPOINT = 'registerEndpoint';
-    const SERVICE_ENDPOINT_REGISTRY = 'auto1.api.endpoint.registry';
+    public const VISITOR_TAG_NAME = 'auto1.api.endpoint_provider';
+    public const VISITOR_TAG_KEY_PRIORITY = 'priority';
+    public const METHOD_REGISTER_ENDPOINT = 'registerEndpoint';
+    public const SERVICE_ENDPOINT_REGISTRY = 'auto1.api.endpoint.registry';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $endpointRegistryDefinition = $container->getDefinition(self::SERVICE_ENDPOINT_REGISTRY);
 
@@ -44,15 +44,7 @@ class EndpointProviderCompilerPass implements CompilerPassInterface
             }
 
             foreach ($provider->getEndpoints() as $endpoint) {
-                if (!$endpoint instanceof EndpointInterface) {
-                    throw new ConfigurationException(
-                        sprintf(
-                            '%s should return instances of %s',
-                            EndpointProviderInterface::class,
-                            EndpointInterface::class
-                        )
-                    );
-                }
+                $endpoint = $this->validateEndpoint($endpoint);
 
                 if (false === class_exists($endpoint->getRequestClass())) {
                     continue;
@@ -73,7 +65,7 @@ class EndpointProviderCompilerPass implements CompilerPassInterface
     /**
      * @param ContainerBuilder $container
      *
-     * @return EndpointProviderInterface[]|\Traversable
+     * @return \Traversable<int, mixed> resolved tagged services, validated by the caller
      */
     private function getEndpointProviders(ContainerBuilder $container): \Traversable
     {
@@ -96,11 +88,33 @@ class EndpointProviderCompilerPass implements CompilerPassInterface
     }
 
     /**
+     * @param mixed $endpoint
+     *
+     * @return EndpointInterface
+     *
+     * @throws ConfigurationException
+     */
+    private function validateEndpoint($endpoint): EndpointInterface
+    {
+        if (!$endpoint instanceof EndpointInterface) {
+            throw new ConfigurationException(
+                sprintf(
+                    '%s should return instances of %s',
+                    EndpointProviderInterface::class,
+                    EndpointInterface::class
+                )
+            );
+        }
+
+        return $endpoint;
+    }
+
+    /**
      * @param EndpointInterface $endpoint
      *
      * @return Definition
      */
-    private function createEndpointImmutableDefinition(EndpointInterface $endpoint) : Definition
+    private function createEndpointImmutableDefinition(EndpointInterface $endpoint): Definition
     {
         return (new Definition(EndpointImmutable::class))->setArguments([
             $endpoint->getMethod(),

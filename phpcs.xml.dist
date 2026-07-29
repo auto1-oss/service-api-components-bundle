@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+    <rule ref="PSR12"/>
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <rule ref="Squiz.Commenting.DocCommentAlignment">
+        <!-- Allow extra spaces after star, i.e. for indented annotations -->
+        <exclude name="Squiz.Commenting.DocCommentAlignment.SpaceAfterStar"/>
+    </rule>
+    <rule ref="Generic.PHP.RequireStrictTypes"/>
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array">
+                <element key="phpinfo" value="null"/>
+                <element key="var_dump" value="null"/>
+                <element key="die" value="null"/>
+            </property>
+        </properties>
+    </rule>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+    <file>Command/</file>
+    <file>DependencyInjection/</file>
+    <file>Exception/</file>
+    <file>Multipart/</file>
+    <file>Service/</file>
+    <file>Tests/</file>
+</ruleset>

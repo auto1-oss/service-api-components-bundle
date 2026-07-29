@@ -39,8 +39,13 @@ services:
     auto1.api.response.serializer:
         class: Symfony\Component\Serializer\Serializer
         arguments:
-            - ['@auto1.api.serializer.denormalizer.array_access', '@auto1.api.serializer.denormalizer.array', '@auto1.api.serializer.normalizer.datetime', '@auto1.api.response.transformer.normalizer']
-            - ['@serializer.encoder.json']
+            $normalizers:
+                - '@auto1.api.serializer.denormalizer.array_access'
+                - '@auto1.api.serializer.denormalizer.array'
+                - '@auto1.api.serializer.normalizer.datetime'
+                - '@auto1.api.response.transformer.normalizer'
+            $encoders:
+                - '@serializer.encoder.json'
 
     auto1.api.serializer.denormalizer.array_access:
       class: Auto1\ServiceAPIComponentsBundle\Service\Serializer\Normalizer\ArrayAccessNormalizer
@@ -67,8 +72,19 @@ services:
             - '@serializer.property_accessor'
             - '@property_info'
 
+    auto1.api.serializer.normalizer.stream_interface:
+        class: Auto1\ServiceAPIComponentsBundle\Service\Serializer\Normalizer\StreamInterfaceDenormalizer
+
     auto1.api.request.serializer:
         class: Symfony\Component\Serializer\Serializer
         arguments:
-            - ['@auto1.api.serializer.normalizer.datetime', '@auto1.api.serializer.denormalizer.array', '@auto1.api.serializer.normalizer.object', '@auto1.api.serializer.normalizer.get_set_method']
-            - ['@auto1.api.encoder.json', '@auto1.api.encoder.url', '@auto1.api.encoder.void']
+            $normalizers:
+                - '@auto1.api.serializer.normalizer.datetime'
+                - '@auto1.api.serializer.normalizer.stream_interface'
+                - '@auto1.api.serializer.denormalizer.array'
+                - '@auto1.api.serializer.normalizer.object'
+                - '@auto1.api.serializer.normalizer.get_set_method'
+            $encoders:
+                - '@auto1.api.encoder.json'
+                - '@auto1.api.encoder.url'
+                - '@auto1.api.encoder.void'

@@ -1,4 +1,5 @@
 <?php
+
 /*
 * This file is part of the auto1-oss/service-api-components-bundle.
 *
@@ -7,6 +8,8 @@
 * For the full copyright and license information, please view the LICENSE
 * file that was distributed with this source code.
 */
+declare(strict_types=1);
+
 namespace Auto1\ServiceAPIComponentsBundle\DependencyInjection\CompilerPass;
 
 use Auto1\ServiceAPIComponentsBundle\Exception\Core\ConfigurationException;
@@ -23,14 +26,11 @@ class UrlResolverCompilerPass implements CompilerPassInterface
 {
     use PriorityTaggedServiceTrait;
 
-    const RESOLVER_TAG_NAME = 'auto1.api.url_resolver';
-    const METHOD_REGISTER_RESOLVER = 'registerResolver';
-    const SERVICE_CHAIN_RESOLVER = 'auto1.api.url_resolver';
+    public const RESOLVER_TAG_NAME = 'auto1.api.url_resolver';
+    public const METHOD_REGISTER_RESOLVER = 'registerResolver';
+    public const SERVICE_CHAIN_RESOLVER = 'auto1.api.url_resolver';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $chainResolverDefinition = $container->getDefinition(self::SERVICE_CHAIN_RESOLVER);
 

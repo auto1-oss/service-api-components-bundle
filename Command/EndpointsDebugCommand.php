@@ -1,4 +1,5 @@
 <?php
+
 /*
 * This file is part of the auto1-oss/service-api-components-bundle.
 *
@@ -7,6 +8,8 @@
 * For the full copyright and license information, please view the LICENSE
 * file that was distributed with this source code.
 */
+declare(strict_types=1);
+
 namespace Auto1\ServiceAPIComponentsBundle\Command;
 
 use Auto1\ServiceAPIComponentsBundle\Service\Endpoint\EndpointInterface;
@@ -37,7 +40,7 @@ class EndpointsDebugCommand extends Command
         $this->endpointRegistry = $endpointRegistry;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('auto1.debug.endpoints');
     }
@@ -68,7 +71,7 @@ class EndpointsDebugCommand extends Command
      * @param OutputInterface $output
      * @param EndpointInterface $endpoint
      */
-    private function dumpEndpoint(OutputInterface $output, EndpointInterface$endpoint)
+    private function dumpEndpoint(OutputInterface $output, EndpointInterface $endpoint): void
     {
         $output->writeln('-=-=-=-=-=-=-');
         $this->writeConfigLine($output, 'requestClass', $endpoint->getRequestClass());
@@ -79,7 +82,6 @@ class EndpointsDebugCommand extends Command
         $this->writeConfigLine($output, 'responseClass', $endpoint->getResponseClass());
         $this->writeConfigLine($output, 'responseFormat', $endpoint->getResponseFormat());
         $this->writeConfigLine($output, 'dateTimeFormat', $endpoint->getDateTimeFormat());
-
     }
 
     /**
@@ -87,8 +89,12 @@ class EndpointsDebugCommand extends Command
      * @param string $key
      * @param string|null $value
      */
-    private function writeConfigLine(OutputInterface $output, string $key, $value)
+    private function writeConfigLine(OutputInterface $output, string $key, $value): void
     {
-        $output->writeln(sprintf("<comment>%s</comment> <info>'%s'</info>", str_pad($key.':', 15, ' '), $value ?? '~'));
+        $output->writeln(sprintf(
+            "<comment>%s</comment> <info>'%s'</info>",
+            str_pad($key . ':', 15, ' '),
+            $value ?? '~'
+        ));
     }
 }
