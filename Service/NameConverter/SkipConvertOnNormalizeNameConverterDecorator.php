@@ -12,40 +12,24 @@ namespace Auto1\ServiceAPIComponentsBundle\Service\NameConverter;
 use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
 
 /**
- * Class SkipConvertOnNormalizeNameConverterDecorator
- *
  * TODO: extend implementation and make it configurable
  */
 class SkipConvertOnNormalizeNameConverterDecorator implements NameConverterInterface
 {
-    /**
-     * @var NameConverterInterface
-     */
-    private $nameConverter;
+    private NameConverterInterface $nameConverter;
 
-    /**
-     * SnakeCaseToCamelCaseOnDenormalizeDecoratorNameConverter constructor.
-     *
-     * @param NameConverterInterface $nameConverter
-     */
     public function __construct(NameConverterInterface $nameConverter)
     {
         $this->nameConverter = $nameConverter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function normalize($propertyName): string
+    public function normalize(string $propertyName, ?string $class = null, ?string $format = null, array $context = []): string
     {
         return $propertyName;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function denormalize($propertyName): string
+    public function denormalize(string $propertyName, ?string $class = null, ?string $format = null, array $context = []): string
     {
-        return $this->nameConverter->denormalize($propertyName);
+        return $this->nameConverter->denormalize($propertyName, $class, $format, $context);
     }
 }
