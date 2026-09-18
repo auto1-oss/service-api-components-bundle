@@ -16,12 +16,12 @@ class JsonEncoder extends \Symfony\Component\Serializer\Encoder\JsonEncoder
 {
     const FORMAT_JSON_PATCH = 'json-patch';
 
-    public function supportsEncoding($format): bool
+    public function supportsEncoding(string $format): bool
     {
         return static::FORMAT_JSON_PATCH === $format || parent::supportsEncoding($format);
     }
 
-    public function supportsDecoding($format): bool
+    public function supportsDecoding(string $format): bool
     {
         return static::FORMAT_JSON_PATCH === $format || parent::supportsDecoding($format);
     }
